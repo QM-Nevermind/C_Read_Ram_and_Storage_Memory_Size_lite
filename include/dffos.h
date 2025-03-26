@@ -16,19 +16,17 @@
 typedef unsigned long size_tl;
 typedef unsigned long long size_tll;
 
-/*
-about unit:
-0 = Byte;
-1 = Kilobyte;
-2 = Megabyte;
-3 = Gigabyte;
+typedef enum{
+    BYTE,
+    KILOBYTE,
+    MEGABYTE,
+    GIGABYTE,
+} RRS_UNIT;
 
-*/
-
-size_tl get_total_ram(size_tl unit);
-size_tl get_free_ram(size_tl unit);
-size_tll get_total_storage_memory(size_tl unit);
-size_tll get_free_storage_memory(size_tl unit);
+size_tl get_total_ram(RRS_UNIT unit);
+size_tl get_free_ram(RRS_UNIT unit);
+size_tll get_total_storage_memory(RRS_UNIT unit);
+size_tll get_free_storage_memory(RRS_UNIT unit);
 
 //function to print the warnings.
 void invalid_unit();

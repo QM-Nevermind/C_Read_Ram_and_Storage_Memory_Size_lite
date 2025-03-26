@@ -24,17 +24,17 @@ void invalid_unit(){
     }
     
     
-    size_tl get_total_ram(size_tl unit){
+    size_tl get_total_ram(RRS_UNIT unit){
         MEMORYSTATUSEX statusex;
         statusex.dwLength = sizeof(statusex);
         GlobalMemoryStatusEx(&statusex);
         unsigned long long llresult;
         size_tl result;
         switch(unit){
-            case 0: llresult = statusex.ullTotalPhys; break;
-            case 1: llresult = statusex.ullTotalPhys / 1024; break;
-            case 2: llresult = statusex.ullTotalPhys / (1024 * 1024); break;
-            case 3: llresult = statusex.ullTotalPhys / (1024 * 1024 * 1024); break;
+            case BYTE: llresult = statusex.ullTotalPhys; break;
+            case KILOBYTE: llresult = statusex.ullTotalPhys / 1024; break;
+            case MEGABYTE: llresult = statusex.ullTotalPhys / (1024 * 1024); break;
+            case GIGABYTE: llresult = statusex.ullTotalPhys / (1024 * 1024 * 1024); break;
             default: invalid_unit(); break;
         }
 
@@ -44,17 +44,17 @@ void invalid_unit(){
     };
 
 
-    size_tl get_free_ram(size_tl unit){
+    size_tl get_free_ram(RRS_UNIT unit){
         MEMORYSTATUSEX statusex;
         statusex.dwLength = sizeof(statusex);
         GlobalMemoryStatusEx(&statusex);
         unsigned long long llresult;
         size_tl result;
         switch(unit){
-            case 0: llresult = statusex.ullAvailPhys; break;
-            case 1: llresult = statusex.ullAvailPhys / 1024; break;
-            case 2: llresult = statusex.ullAvailPhys / (1024 * 1024); break;
-            case 3: llresult = statusex.ullAvailPhys / (1024 * 1024 * 1024); break;
+            case BYTE: llresult = statusex.ullAvailPhys; break;
+            case KILOBYTE: llresult = statusex.ullAvailPhys / 1024; break;
+            case MEGABYTE: llresult = statusex.ullAvailPhys / (1024 * 1024); break;
+            case GIGABYTE: llresult = statusex.ullAvailPhys / (1024 * 1024 * 1024); break;
             default: invalid_unit(); break;
         }
 
@@ -76,7 +76,7 @@ void invalid_unit(){
 
 
 
-    size_tl get_total_ram(size_tl unit){
+    size_tl get_total_ram(RRS_UNIT unit){
         struct sysinfo info;
 
         #ifndef _rrasms_disable_warning_messages_
@@ -93,10 +93,10 @@ void invalid_unit(){
         the number of bytes and multiplying 
         it several times by 1024 (because 1024 bytes is a kilobyte, 1024 kilobytes is a megabyte, etc.).
         */
-            case 0: result = info.totalram * info.mem_unit; break;
-            case 1: result = info.totalram * info.mem_unit / 1024; break;
-            case 2: result = info.totalram * info.mem_unit / (1024 * 1024); break;
-            case 3: result = info.totalram * info.mem_unit / (1024 * 1024 * 1024); break;
+            case BYTE: result = info.totalram * info.mem_unit; break;
+            case KILOBYTE: result = info.totalram * info.mem_unit / 1024; break;
+            case MEGABYTE: result = info.totalram * info.mem_unit / (1024 * 1024); break;
+            case GIGABYTE: result = info.totalram * info.mem_unit / (1024 * 1024 * 1024); break;
             default: invalid_unit(); break;
         }
         return result;
@@ -104,7 +104,7 @@ void invalid_unit(){
     
 
 
-    size_tl get_free_ram(size_t unit){
+    size_tl get_free_ram(RRS_UNIT unit){
         static struct sysinfo info;
 
         #ifndef _rrasms_disable_warning_messages_
@@ -116,10 +116,10 @@ void invalid_unit(){
 
         size_t result;
         switch(unit){
-            case 0: result = info.freeram * info.mem_unit; break;
-            case 1: result = info.freeram * info.mem_unit / 1024; break;
-            case 2: result = info.freeram * info.mem_unit / (1024 * 1024); break;
-            case 3: result = info.freeram * info.mem_unit / (1024 * 1024 * 1024); break;
+            case BYTE: result = info.freeram * info.mem_unit; break;
+            case KILOBYTE: result = info.freeram * info.mem_unit / 1024; break;
+            case MEGABYTE: result = info.freeram * info.mem_unit / (1024 * 1024); break;
+            case GIGABYTE: result = info.freeram * info.mem_unit / (1024 * 1024 * 1024); break;
             default: invalid_unit(); break;
         }
         return result;

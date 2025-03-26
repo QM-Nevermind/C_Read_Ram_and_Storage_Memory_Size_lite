@@ -1,7 +1,7 @@
 C_Read_Ram_and_Storage_Memory_Size_lite is a C library for determining the total and free size of RAM and hard disk for Windows64 and Windows32 systems as well as for Linux/Unix-based systems.
 
 <div align="center">
-***_____How do I use it?_____***
+_____How do I use it?_____
 <div>
 
 You can use it by calling the appropriate functions:
@@ -16,16 +16,15 @@ get_total_memory(unit) = Returns the total size of the hard disk as an unsigned 
 
 get_free_storage_memory(unit) = Returns the free hard disk size as an unsigned long.
 
-Note: Unit is a parameter with the data type unsigned long and expects one of the following values:
+Note: Unit is a parameter with the data type enum:
 
-0 = returns the content in bytes.
-1 = returns the content in kilobytes.
-2 = returns the content in megabytes.
-3 = returns the content in gigabytes.
-
+BYTE = returns the content in bytes.
+KILOBYTE = returns the content in kilobytes.
+MEGABYTE = returns the content in megabytes.
+GIGABYTE = returns the content in gigabytes.
 
 <div align="center">
-***__Use libraries:__***
+__Use libraries:__
 <div>
 GNU C Libary.
 Windows API.
